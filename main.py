@@ -14,7 +14,8 @@ print("modinstaller", version)
 os.chdir (pathstring)
 print ("removing .git folder")
 os.system ("rmdir /S .git")
-
+print("WARNING mods folder is about top be completely wiped")
+safety = input("exit this window to cancel mod deletion or press enter to continue")
 folder = pathstring
 for filename in os.listdir(folder):
     file_path = os.path.join(folder, filename)
