@@ -1,5 +1,5 @@
 # mod-installer
 basic minecraft mod installer
 
-#download
+# download
 you can download the latest release from the releases tab
