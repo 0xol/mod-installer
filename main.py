@@ -3,6 +3,7 @@ import sys
 import os
 import shutil
 from git import Repo
+from subprocess import call
 
 version = "0.1"
 paths = os.getenv('APPDATA')
@@ -11,6 +12,8 @@ pathstring = str(paths + mcpath)
 
 print("modinstaller", version)
 os.chdir (pathstring)
+print ("removing .git folder")
+os.system ("rmdir /S .git")
 
 folder = pathstring
 for filename in os.listdir(folder):
