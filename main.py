@@ -4,6 +4,9 @@ import os
 import shutil
 from git import Repo
 from subprocess import call
+from git import RemoteProgress
+from tqdm import tqdm
+
 
 version = "0.1"
 paths = os.getenv('APPDATA')
@@ -29,5 +32,14 @@ for filename in os.listdir(folder):
     
 gitaddress = input("enter git address: ")
 
+class CloneProgress(RemoteProgress):
+    def __init__(self):
+        super().__init__()
+        self.pbar = tqdm()
 
-Repo.clone_from(gitaddress, pathstring)
+    def update(self, op_code, cur_count, max_count=None, message=''):
+        self.pbar.total = max_count
+        self.pbar.n = cur_count
+        self.pbar.refresh()
+
+Repo.clone_from(gitaddress, pathstring, branch='main', progress=CloneProgress())
